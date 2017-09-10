@@ -1,8 +1,10 @@
 <?php
+namespace File;
+use File\Base;
 /**
  * inc文件类
  */
-class Public_File_Inc extends Public_File_Base
+class Inc extends Base
 {
 	/**
 	 * 读inc文件内容
@@ -19,13 +21,6 @@ class Public_File_Inc extends Public_File_Base
 			}
 		} else {
 			$content = $this->readfile();
-			//5.3.5版本的php对匹配内容的大小有限制，大于一定量直接返回false 固停用此匹配
-			/*$matches = null;
-			if (preg_match_all('/\<\?php[\s]+(return[\s]+[\s\S]*?)(\?\>)?$/', $content, $matches)) {
-				return eval($matches[1][0]);
-			} else {
-				return null;
-			}*/
 			if (substr($content, 0, 5) == "<?php") {
 				$content = ltrim($content, "<?php");
 				$content = rtrim($content, "?>");
